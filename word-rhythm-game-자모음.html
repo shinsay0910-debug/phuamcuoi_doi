@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trò Chơi Phát Âm Tiếng Hàn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0F2B;
+    --bg2:#151A44;
+    --neon-pink:#FF3B8D;
+    --neon-cyan:#3BF0FF;
+    --neon-yellow:#FFE94A;
+    --cream:#F4F6FF;
+    --muted:#7C82B5;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,59,141,0.15), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(59,240,255,0.15), transparent 45%),
+      var(--bg);
+    font-family:'Gowun Dodum', sans-serif;
+    color:var(--cream);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px 14px;
+    overflow:hidden;
+  }
+  .stage{width:100%; max-width:440px;}
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.35em;
+    color:var(--neon-cyan);
+    text-align:center;
+    margin-bottom:4px;
+  }
+  h1{
+    font-family:'Black Han Sans', sans-serif;
+    text-align:center;
+    font-size:28px;
+    margin:0 0 4px;
+    background:linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .subtitle{
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:18px;
+  }
+  .panel{
+    background:rgba(21,26,68,0.7);
+    border:1px solid rgba(59,240,255,0.18);
+    border-radius:22px;
+    padding:22px 18px 24px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);
+    backdrop-filter:blur(6px);
+    position:relative;
+  }
+  .meta-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:14px;
+  }
+  .meta-row span b{color:var(--neon-yellow);}
+
+  /* beat ring */
+  .beat-wrap{
+    display:flex;
+    justify-content:center;
+    margin-bottom:8px;
+  }
+  .beat-ring{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:var(--neon-pink);
+    box-shadow:0 0 12px 4px rgba(255,59,141,0.6);
+  }
+  .beat-ring.pulse{
+    animation:pulse .25s ease-out;
+  }
+  @keyframes pulse{
+    0%{transform:scale(1); box-shadow:0 0 8px 2px rgba(255,59,141,0.5);}
+    40%{transform:scale(2.4); box-shadow:0 0 24px 10px rgba(255,59,141,0.85);}
+    100%{transform:scale(1); box-shadow:0 0 8px 2px rgba(255,59,141,0.5);}
+  }
+
+  .word-display{
+    text-align:center;
+    min-height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:6px 0 14px;
+  }
+  .word-display .word{
+    font-family:'Black Han Sans', sans-serif;
+    font-size:92px;
+    color:var(--cream);
+    text-shadow:0 0 18px rgba(59,240,255,0.35);
+    line-height:1.1;
+  }
+  .word-display .consonant-tag{
+    display:block;
+    font-size:14px;
+    color:var(--neon-cyan);
+    letter-spacing:0.15em;
+    margin-bottom:6px;
+  }
+  .word-display .vn-meaning{
+    display:block;
+    font-size:15px;
+    color:var(--neon-yellow);
+    margin-top:6px;
+    font-family:'Gowun Dodum', sans-serif;
+  }
+  .word-display .word.hit{
+    animation:hitword .32s ease-out;
+  }
+  @keyframes hitword{
+    0%{transform:scale(0.6) rotate(-3deg); opacity:0;}
+    60%{transform:scale(1.15) rotate(1deg); opacity:1;}
+    100%{transform:scale(1) rotate(0deg); opacity:1;}
+  }
+  .word-display .countdown{
+    font-family:'Black Han Sans', sans-serif;
+    font-size:52px;
+    color:var(--neon-yellow);
+  }
+  .word-display .idle{
+    color:var(--muted);
+    font-size:15px;
+  }
+
+  .dots{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+  }
+  .dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    transition:background .15s, transform .15s;
+  }
+  .dot.done{background:var(--neon-cyan);}
+  .dot.active{background:var(--neon-pink); transform:scale(1.3);}
+
+  .controls{
+    display:flex;
+    gap:10px;
+  }
+  button{
+    font-family:'Gowun Dodum', sans-serif;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    padding:14px;
+    transition:transform .12s ease, filter .12s ease;
+  }
+  button:active{transform:scale(0.96);}
+  .btn-main{
+    flex:1;
+    background:linear-gradient(120deg, var(--neon-pink), #B4227C);
+    color:#fff;
+    box-shadow:0 8px 0 rgba(0,0,0,0.25);
+  }
+  .btn-secondary{
+    flex:1;
+    background:transparent;
+    border:1.5px solid rgba(124,130,181,0.4);
+    color:var(--muted);
+  }
+  .btn-secondary:hover{color:var(--cream); border-color:var(--neon-cyan);}
+
+  .result{
+    text-align:center;
+  }
+  .result .headline{
+    font-family:'Black Han Sans', sans-serif;
+    font-size:30px;
+    color:var(--neon-yellow);
+    margin-bottom:6px;
+  }
+  .result p{color:var(--muted); font-size:14px; margin:4px 0 18px;}
+
+  .footer-note{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--muted);
+    margin-top:14px;
+    line-height:1.5;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="eyebrow">H Ọ C &nbsp;P H Á T &nbsp;Â M &nbsp;N G Ẫ U &nbsp;N H I Ê N</div>
+  <h1>Trò Chơi Phát Âm</h1>
+  <div class="subtitle">Đọc to chữ cái xuất hiện trên màn hình theo đúng nhịp</div>
+
+  <div class="panel">
+
+    <div id="idle-screen">
+      <div class="meta-row">
+        <span>Bộ: <b>Âm tiết ghép (12 âm/lượt)</b></span>
+        <span>Nhịp bắt đầu: <b>65</b></span>
+      </div>
+      <div class="word-display"><div class="idle">가 · 거 · 고 · 구 · 그 · 배 · 쇠 · 위 ...<br><br>Phụ âm + nguyên âm ghép thành 1 âm tiết thật<br>Nhấn nút để đếm ngược 3·2·1<br>rồi các âm tiết sẽ xuất hiện ngẫu nhiên theo nhịp</div></div>
+      <div class="controls">
+        <button class="btn-main" id="start-btn">▶ Bắt đầu</button>
+      </div>
+    </div>
+
+    <div id="play-screen" style="display:none;">
+      <div class="meta-row">
+        <span>Cấp độ <b id="level-label">1</b> / 3</span>
+        <span>Nhịp <b id="bpm-label">65</b></span>
+      </div>
+      <div class="beat-wrap"><div class="beat-ring" id="beat-ring"></div></div>
+      <div class="word-display" id="word-display"><div class="countdown" id="countdown-el">3</div></div>
+      <div class="dots" id="dots"></div>
+      <div class="controls">
+        <button class="btn-secondary" id="stop-btn">■ Dừng lại</button>
+      </div>
+    </div>
+
+    <div id="result-screen" style="display:none;">
+      <div class="result">
+        <div class="headline" id="result-headline">Hoàn thành cấp độ! 🔥</div>
+        <p id="result-msg">Cấp độ tiếp theo sẽ nhanh hơn</p>
+        <div class="controls">
+          <button class="btn-secondary" id="retry-btn">Thử lại</button>
+          <button class="btn-main" id="next-btn">Cấp độ tiếp →</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-note">Đây là trò chơi luyện phát âm nên không chấm điểm đúng/sai — hãy tự kiểm tra xem mình có theo kịp nhịp không nhé!</div>
+</div>
+
+<script>
+// 초성(자음) 9개 — 유니코드 조합용 인덱스 포함
+const CONSONANTS = [
+  {ch:'ㄱ', idx:0,  roman:'g'},
+  {ch:'ㄴ', idx:2,  roman:'n'},
+  {ch:'ㄷ', idx:3,  roman:'d'},
+  {ch:'ㄹ', idx:5,  roman:'r'},
+  {ch:'ㅁ', idx:6,  roman:'m'},
+  {ch:'ㅂ', idx:7,  roman:'b'},
+  {ch:'ㅅ', idx:9,  roman:'s'},
+  {ch:'ㅇ', idx:11, roman:''},
+  {ch:'ㅈ', idx:12, roman:'j'}
+];
+// 단모음 10개 — 유니코드 조합용 인덱스 포함
+const VOWELS = [
+  {ch:'ㅏ', idx:0,  roman:'a'},
+  {ch:'ㅐ', idx:1,  roman:'ae'},
+  {ch:'ㅓ', idx:4,  roman:'eo'},
+  {ch:'ㅔ', idx:5,  roman:'e'},
+  {ch:'ㅗ', idx:8,  roman:'o'},
+  {ch:'ㅚ', idx:11, roman:'oe'},
+  {ch:'ㅜ', idx:13, roman:'u'},
+  {ch:'ㅡ', idx:18, roman:'eu'},
+  {ch:'ㅟ', idx:16, roman:'wi'},
+  {ch:'ㅣ', idx:20, roman:'i'}
+];
+
+function buildSyllable(cho, jung){
+  const code = 0xAC00 + (cho.idx * 21 + jung.idx) * 28;
+  return String.fromCharCode(code);
+}
+
+function buildAllCombos(){
+  const combos = [];
+  CONSONANTS.forEach(c => {
+    VOWELS.forEach(v => {
+      combos.push({
+        word: buildSyllable(c, v),
+        vn: (c.roman + v.roman) || v.roman
+      });
+    });
+  });
+  return combos;
+}
+
+const ALL_COMBOS = buildAllCombos(); // 자음9 x 모음10 = 90개 실제 음절
+const ROUND_SIZE = 12; // 한 판에 나올 음절 개수
+const LEVELS = [65, 80, 95]; // BPM per level (기존보다 아주 조금씩만 상향)
+let currentLevel = 0;
+let audioCtx = null;
+let beatTimer = null;
+let beatIndex = 0;
+let wordOrder = [];
+let running = false;
+
+function shuffle(arr){
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function ensureAudio(){
+  if (!audioCtx){
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function click(freq = 880, duration = 0.06){
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.frequency.value = freq;
+  osc.type = 'sine';
+  gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration);
+}
+
+function buildDots(){
+  const dotsEl = document.getElementById('dots');
+  dotsEl.innerHTML = '';
+  for (let i = 0; i < ROUND_SIZE; i++){
+    const d = document.createElement('div');
+    d.className = 'dot';
+    dotsEl.appendChild(d);
+  }
+}
+
+function updateDots(idx){
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach((d, i) => {
+    d.classList.toggle('done', i < idx);
+    d.classList.toggle('active', i === idx);
+  });
+}
+
+function pulseRing(){
+  const ring = document.getElementById('beat-ring');
+  ring.classList.remove('pulse');
+  void ring.offsetWidth; // reflow to restart animation
+  ring.classList.add('pulse');
+}
+
+function showWord(item){
+  const wd = document.getElementById('word-display');
+  wd.innerHTML = `<div class="word hit">${item.word}<span class="vn-meaning">${item.vn}</span></div>`;
+}
+
+function startLevel(level){
+  currentLevel = level;
+  const bpm = LEVELS[level];
+  document.getElementById('level-label').textContent = level + 1;
+  document.getElementById('bpm-label').textContent = bpm;
+  document.getElementById('idle-screen').style.display = 'none';
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('play-screen').style.display = 'block';
+  buildDots();
+
+  wordOrder = shuffle(ALL_COMBOS).slice(0, ROUND_SIZE); // 90개 조합 중 매판 12개 랜덤 추출
+  beatIndex = -3; // countdown 3,2,1 then words
+  running = true;
+
+  ensureAudio();
+  const intervalMs = 60000 / bpm;
+  runCountdownThenBeats(intervalMs);
+}
+
+function runCountdownThenBeats(intervalMs){
+  const wd = document.getElementById('word-display');
+
+  function tick(){
+    if (!running) return;
+
+    if (beatIndex < 0){
+      const n = beatIndex + 4; // -3 -> 1(shows "3"), -2 -> shows 2, -1 -> shows 1
+      wd.innerHTML = `<div class="countdown">${-beatIndex}</div>`;
+      click(660, 0.05);
+      pulseRing();
+      beatIndex++;
+      beatTimer = setTimeout(tick, intervalMs);
+      return;
+    }
+
+    if (beatIndex >= wordOrder.length){
+      running = false;
+      finishLevel();
+      return;
+    }
+
+    const word = wordOrder[beatIndex];
+    showWord(word);
+    updateDots(beatIndex);
+    click(880, 0.06);
+    pulseRing();
+    beatIndex++;
+    beatTimer = setTimeout(tick, intervalMs);
+  }
+
+  tick();
+}
+
+function stopGame(){
+  running = false;
+  if (beatTimer) clearTimeout(beatTimer);
+  document.getElementById('play-screen').style.display = 'none';
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('idle-screen').style.display = 'block';
+}
+
+function finishLevel(){
+  document.getElementById('play-screen').style.display = 'none';
+  document.getElementById('result-screen').style.display = 'block';
+
+  const isLast = currentLevel >= LEVELS.length - 1;
+  document.getElementById('result-headline').textContent = isLast ? 'Hoàn thành tất cả cấp độ! 🏆' : 'Hoàn thành cấp độ! 🔥';
+  document.getElementById('result-msg').textContent = isLast
+    ? `Bạn đã hoàn thành với tốc độ cao nhất ${LEVELS[LEVELS.length - 1]} nhịp/phút!`
+    : `Cấp độ tiếp theo sẽ nhanh hơn, ${LEVELS[currentLevel + 1]} nhịp/phút`;
+
+  const nextBtn = document.getElementById('next-btn');
+  if (isLast){
+    nextBtn.textContent = 'Chơi lại từ đầu →';
+    nextBtn.onclick = () => startLevel(0);
+  } else {
+    nextBtn.textContent = 'Cấp độ tiếp →';
+    nextBtn.onclick = () => startLevel(currentLevel + 1);
+  }
+}
+
+document.getElementById('start-btn').addEventListener('click', () => startLevel(0));
+document.getElementById('stop-btn').addEventListener('click', stopGame);
+document.getElementById('retry-btn').addEventListener('click', () => startLevel(currentLevel));
+</script>
+</body>
+</html>
