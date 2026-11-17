@@ -359,7 +359,7 @@
 
 <script>
 const DATA = [
-  {letter:"ㅑ", syllable:"야", viet:'"ya")', mouth:"Bắt đầu bằng âm lướt \"y\" rồi chuyển nhanh sang âm ㅏ.", distractor:"ㅕ"},
+  {letter:"ㅑ", syllable:"야", viet:'"ya"', mouth:"Bắt đầu bằng âm lướt \"y\" rồi chuyển nhanh sang âm ㅏ.", distractor:"ㅕ"},
   {letter:"ㅕ", syllable:"여", viet:'"yơ"', mouth:"Bắt đầu bằng âm lướt \"y\" rồi chuyển nhanh sang âm ㅓ.", distractor:"ㅑ"},
   {letter:"ㅛ", syllable:"요", viet:'"yô"', mouth:"Bắt đầu bằng âm lướt \"y\" rồi chuyển nhanh sang âm ㅗ.", distractor:"ㅠ"},
   {letter:"ㅠ", syllable:"유", viet:'"yu"', mouth:"Bắt đầu bằng âm lướt \"y\" rồi chuyển nhanh sang âm ㅜ.", distractor:"ㅛ"},
@@ -378,7 +378,7 @@ DATA.forEach((d,i)=>{
   const t = document.createElement('div');
   t.className = 'hero-tile hangul';
   t.textContent = d.letter;
-  t.style.animationDelay = (i * 0.7) + 's';
+  t.style.animationDelay = (i * 0.8) + 's';
   heroRow.appendChild(t);
 });
 
