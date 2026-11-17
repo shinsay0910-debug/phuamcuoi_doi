@@ -373,7 +373,7 @@ const DATA = [
 ];
 
 /* ---------- hero row ---------- */
-const heroRow = document.getElementById('heroRow');
+if (heroRow){
 DATA.forEach((d,i)=>{
   const t = document.createElement('div');
   t.className = 'hero-tile hangul';
