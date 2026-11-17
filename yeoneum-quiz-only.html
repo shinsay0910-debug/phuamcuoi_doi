@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>연음 · Luyện tập nối âm</title>
+<title>Luyện tập quy tắc nối âm</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -124,8 +124,8 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">Ngữ âm tiếng Hàn</div>
-    <h1 class="title hangul">Luyện tập nối âm (연음)</h1>
+    <div class="eyebrow">Nguyên tắc phát âm tiếng Hàn</div>
+    <h1 class="title hangul">Luyện tập quy tắc nối âm (연음)</h1>
   </div>
 </header>
 
@@ -153,7 +153,7 @@
         </div>
 
         <div class="quiz-zone" id="quizZone">
-          <div class="quiz-q" id="quizQ">Từ này đọc nối âm đúng là gì?</div>
+          <div class="quiz-q" id="quizQ">Phát âm đúng của từ này là gì?</div>
           <div class="quiz-opts" id="quizOpts"></div>
           <div class="quiz-fb" id="quizFb"></div>
         </div>
@@ -167,8 +167,8 @@
       <div class="final-screen" id="finalScreen">
         <div class="sec-label" style="color:var(--red)">Hoàn thành</div>
         <div class="final-num" id="finalScore">0 / 8</div>
-        <p style="color:#6a6152;max-width:460px;margin:10px auto 22px;">Bạn đã luyện xong quy tắc nối âm cho cả Patchim đơn, Phụ âm cuối đôi và ㅎ.</p>
-        <button class="btn btn-primary" id="btnRestart">↺ Luyện lại từ đầu</button>
+        <p style="color:#6a6152;max-width:460px;margin:10px auto 22px;">Bạn đã luyện xong quy tắc nối âm cho cả Phụ âm cuối đơn, Phụ âm cuối đôi và Phụ âm cuối ㅎ.</p>
+        <button class="btn btn-primary" id="btnRestart">↺ Luyện tập lại từ đầu</button>
       </div>
     </div>
   </div>
@@ -176,14 +176,14 @@
 
 <script>
 const DATA = [
-  {word:"먹어요", pron:"머거요", wrong:"먹어요", meaning:"ăn", explain:"Patchim đơn ㄱ trượt nguyên vẹn sang làm phụ âm đầu của 어 → 거."},
-  {word:"입어요", pron:"이버요", wrong:"입어요", meaning:"mặc (quần áo)", explain:"Patchim đơn ㅂ trượt nguyên vẹn sang làm phụ âm đầu của 어 → 버."},
-  {word:"읽어요", pron:"일거요", wrong:"익어요", meaning:"đọc", explain:"Phụ âm cuối đôi ㄺ: ㄹ ở lại làm Patchim của 읽, ㄱ trượt sang làm phụ âm đầu của 어 → 거."},
-  {word:"짧아요", pron:"짤바요", wrong:"짜바요", meaning:"ngắn", explain:"Phụ âm cuối đôi ㄼ: ㄹ ở lại làm Patchim, ㅂ trượt sang làm phụ âm đầu của 아 → 바."},
-  {word:"없어요", pron:"업써요", wrong:"업서요", meaning:"không có", explain:"Phụ âm cuối đôi ㅄ: ㅂ ở lại làm Patchim, ㅅ trượt sang và bị căng hóa thành [ㅆ] →써."},
-  {word:"앉아요", pron:"안자요", wrong:"안차요", meaning:"ngồi", explain:"Phụ âm cuối đôi ㄵ: ㄴ ở lại làm Patchim, ㅈ trượt sang làm phụ âm đầu của 아 → 자."},
-  {word:"좋아요", pron:"조아요", wrong:"조하요", meaning:"thích, tốt", explain:"Patchim ㅎ không trượt sang mà biến mất hoàn toàn trước nguyên âm (ㅎ탈락)."},
-  {word:"많아요", pron:"마나요", wrong:"만하요", meaning:"nhiều", explain:"Phụ âm cuối đôi ㄶ: ㄴ trượt sang làm phụ âm đầu của 아 → 나, còn ㅎ biến mất (ㅎ탈락)."},
+  {word:"먹어요", pron:"머거요", wrong:"먹어요", meaning:"ăn", explain:"Phụ âm cuối đơn ㄱ nối sang làm phụ âm đầu của 어 → 거."},
+  {word:"입어요", pron:"이버요", wrong:"입어요", meaning:"mặc (quần áo)", explain:"Phụ âm cuối đơn ㅂ nối sang làm phụ âm đầu của 어 → 버."},
+  {word:"읽어요", pron:"일거요", wrong:"익어요", meaning:"đọc", explain:"Phụ âm cuối kép ㄺ: ㄹ ở lại làm phụ âm cuối, ㄱ nối sang làm phụ âm đầu của 어 → 거."},
+  {word:"짧아요", pron:"짤바요", wrong:"짜바요", meaning:"ngắn", explain:"Phụ âm cuối kép ㄼ: ㄹ ở lại làm phụ âm cuối, ㅂ nối sang làm phụ âm đầu của 아 → 바."},
+  {word:"없어요", pron:"업써요", wrong:"업서요", meaning:"không có", explain:"Phụ âm cuối kép ㅄ: ㅂ ở lại làm phụ âm cuối, ㅅ nối sang và bị căng hóa thành [ㅆ] →써."},
+  {word:"앉아요", pron:"안자요", wrong:"안차요", meaning:"ngồi", explain:"Phụ âm cuối kép ㄵ: ㄴ ở lại làm phụ âm cuối, ㅈ nối sang làm phụ âm đầu của 아 → 자."},
+  {word:"좋아요", pron:"조아요", wrong:"조하요", meaning:"thích, tốt", explain:"Phụ âm cuối ㅎ không nối sang mà bị lượt bỏ, không đọc do đứng trước nguyên âm (Quy tắc lượt bỏ ㅎ)."},
+  {word:"많아요", pron:"마나요", wrong:"만하요", meaning:"nhiều", explain:"Phụ âm cuối đôi ㄶ: ㅎ bị lượt bỏ, ㄴ nối sang làm phụ âm đầu của 아 → 나."},
 ];
 
 /* ---------- audio helper (녹음 파일 재생, base64로 내장되어 별도 파일 필요 없음) ---------- */
@@ -283,7 +283,7 @@ btnReveal.addEventListener('click', ()=>{
   document.getElementById('rvTip').textContent = d.explain;
   revealPanel.classList.add('show');
 
-  quizQ.textContent = `"${d.word}" đọc nối âm đúng là gì?`;
+  quizQ.textContent = `"${d.word}" Phát âm đúng là gì?`;
   quizOpts.innerHTML = '';
   const opts = Math.random() > 0.5 ? [d.pron, d.wrong] : [d.wrong, d.pron];
   opts.forEach(opt=>{
@@ -302,7 +302,7 @@ btnReveal.addEventListener('click', ()=>{
         score++;
         quizFb.textContent = 'Chính xác! ✅';
       } else {
-        quizFb.textContent = `Chưa đúng — cách đọc đúng là [${d.pron}]. Nghe lại và thử lần sau nhé.`;
+        quizFb.textContent = `Chưa chính xác — cách đọc đúng là [${d.pron}]. Hãy nghe và thử lại nhé.`;
       }
       scoreText.textContent = `Điểm: ${score} / ${DATA.length}`;
       renderDots();
