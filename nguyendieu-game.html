@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>억양 · Trò chơi ngữ điệu</title>
+<title>억양 · Ngữ điệu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -67,8 +67,8 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">Trò chơi · Ngữ điệu theo loại câu</div>
-    <h1 class="title hangul">Chọn đường ngữ điệu đúng (억양)</h1>
+    <div class="eyebrow">Game · Ngữ điệu trong tiếng Hàn</div>
+    <h1 class="title hangul">Hãy chọn đường ngữ điệu đúng</h1>
   </div>
 </header>
 
@@ -90,7 +90,7 @@
       <div class="final-screen" id="finalScreen">
         <div class="sec-label">Hoàn thành</div>
         <div class="final-num" id="finalScore">0 / 6</div>
-        <p style="color:#6a6152;max-width:460px;margin:10px auto 22px;">Bạn đã luyện xong 6 câu về ngữ điệu.</p>
+        <p style="color:#6a6152;max-width:460px;margin:10px auto 22px;">Bạn đã hoàn thành luyện tập ngữ điệu tiếng Hàn.</p>
         <button class="btn btn-primary" id="btnRestart">↺ Chơi lại từ đầu</button>
       </div>
     </div>
@@ -149,7 +149,7 @@ const ROUNDS = [
     distractorLevels:[2,3,1,1,4], distractorLabel:"Trung-cao-thấp-thấp-cao nhất (nghi vấn)",
   },
   {
-    sentence:"밥을 먹어요?", mean:"Bạn đang ăn cơm à? (câu hỏi)",
+    sentence:"밥을 먹어요?", mean:"Bạn đang ăn cơm à? (câu hỏi có/không)",
     syllables:["밥","을","먹","어","요"], audio:"question",
     correctLevels:[2,3,1,1,4], correctLabel:"Trung-cao-thấp-thấp-cao nhất (nghi vấn)",
     distractorLevels:[2,4,3,3,1], distractorLabel:"Trung-cao nhất-cao-cao-thấp (tường thuật)",
@@ -161,13 +161,13 @@ const ROUNDS = [
     distractorLevels:[1,2,3,4], distractorLabel:"Thấp-trung-cao-cao nhất (lên đều)",
   },
   {
-    sentence:"어디에 가요?", mean:"Bạn đang đi đâu thế? (hỏi thông tin thật — WH)",
+    sentence:"어디에 가요?", mean:"Bạn đang đi đâu thế? (câu hỏi có từ hỏi, yêu cầu cung cấp thông tin)",
     syllables:["어","디","에","가","요"], audio:"wh",
     correctLevels:[2,4,3,2,4], correctLabel:"Trung-cao nhất-cao-trung-cao nhất (WH)",
     distractorLevels:[2,3,2,1,4], distractorLabel:"Trung-cao-trung-thấp-cao nhất (Có/Không)",
   },
   {
-    sentence:"어디에 가요?", mean:"Bạn đang đi đâu à? (chỉ xác nhận lại dự đoán)",
+    sentence:"어디에 가요?", mean:"Bạn đang đi đâu à? (câu hỏi có từ hỏi, yêu cầu xác nhận có/không)",
     syllables:["어","디","에","가","요"], audio:"qword",
     correctLevels:[2,3,2,1,4], correctLabel:"Trung-cao-trung-thấp-cao nhất (Có/Không)",
     distractorLevels:[2,4,3,2,4], distractorLabel:"Trung-cao nhất-cao-trung-cao nhất (WH)",
@@ -233,7 +233,7 @@ function loadRound(){
       } else {
         b.classList.add('wrong');
         [...gOpts.children].forEach((c,j)=>{ if(options[j].correct) c.classList.add('correct'); });
-        gFb.textContent = `Chưa đúng — đường ngữ điệu đúng là "${r.correctLabel}".`;
+        gFb.textContent = `Chưa chính xác — đáp án đúng là "${r.correctLabel}".`;
       }
       scoreText.textContent = `Điểm: ${score} / ${ROUNDS.length}`;
       renderDots();
