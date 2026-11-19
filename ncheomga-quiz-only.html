@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ㄴ첨가 · Luyện tập nguyên tắc thêm ㄴ</title>
+<title>ㄴ첨가 · Luyện tập quy tắc thêm ㄴ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -124,8 +124,8 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">Ngữ âm tiếng Hàn</div>
-    <h1 class="title hangul">Luyện tập nguyên tắc thêm ㄴ (ㄴ첨가)</h1>
+    <div class="eyebrow">Nguyên tắc phát âm tiếng Hàn</div>
+    <h1 class="title hangul">Luyện tập quy tắc thêm ㄴ (ㄴ첨가)</h1>
   </div>
 </header>
 
@@ -136,7 +136,7 @@
 
       <div id="playScreen">
         <div class="p-word hangul" id="pWord">솜이불</div>
-        <div class="p-mean" id="pMean">chăn bông (chăn nhồi bông)</div>
+        <div class="p-mean" id="pMean">chăn bông</div>
 
         <div class="countdown-zone" id="countdownZone"></div>
 
@@ -148,12 +148,12 @@
 
         <div class="reveal-panel" id="revealPanel">
           <div class="reveal-row"><div class="k">Chữ viết</div><div class="v hangul" id="rvWritten"></div></div>
-          <div class="reveal-row"><div class="k">Đọc thật</div><div class="v mono2" id="rvSound" style="color:var(--red)"></div></div>
+          <div class="reveal-row"><div class="k">Phát âm</div><div class="v mono2" id="rvSound" style="color:var(--red)"></div></div>
           <div class="tip" id="rvTip"></div>
         </div>
 
         <div class="quiz-zone" id="quizZone">
-          <div class="quiz-q" id="quizQ">Từ này thật ra được phát âm là gì?</div>
+          <div class="quiz-q" id="quizQ">Từ này phát âm như thế nào?</div>
           <div class="quiz-opts" id="quizOpts"></div>
           <div class="quiz-fb" id="quizFb"></div>
         </div>
@@ -167,7 +167,7 @@
       <div class="final-screen" id="finalScreen">
         <div class="sec-label" style="color:var(--red)">Hoàn thành</div>
         <div class="final-num" id="finalScore">0 / 6</div>
-        <p style="color:#6a6152;max-width:460px;margin:10px auto 22px;">Bạn đã luyện xong 6 từ áp dụng nguyên tắc thêm ㄴ.</p>
+        <p style="color:#6a6152;max-width:460px;margin:10px auto 22px;">Bạn đã hoàn thành luyện tập quy tắc thêm ㄴ.</p>
         <button class="btn btn-primary" id="btnRestart">↺ Luyện lại từ đầu</button>
       </div>
     </div>
@@ -176,12 +176,12 @@
 
 <script>
 const DATA = [
-  {word:"솜이불", pron:"솜니불", wrong:"소미불", meaning:"chăn bông (chăn nhồi bông)", explain:"솜 + 이불: 이 đứng đầu phần sau → chèn ㄴ. Patchim ㅁ không đổi gì thêm."},
-  {word:"한여름", pron:"한녀름", wrong:"하녀름", meaning:"giữa mùa hè, cao điểm hè", explain:"한 + 여름: 여 đứng đầu phần sau → chèn ㄴ. Patchim ㄴ không đổi gì thêm."},
-  {word:"무슨 요일", pron:"무슨뇨일", wrong:"무스뇨일", meaning:"thứ mấy (ngày nào trong tuần)", explain:"무슨 + 요일: 요 đứng đầu phần sau → chèn ㄴ. Patchim ㄴ không đổi gì thêm."},
-  {word:"색연필", pron:"생년필", wrong:"새견필", meaning:"bút chì màu", explain:"색 + 연필: 연 đứng đầu phần sau → chèn ㄴ, sau đó Patchim ㄱ đứng trước ㄴ mới → mũi hóa thành ㅇ: [생년필]."},
-  {word:"꽃잎", pron:"꼰닙", wrong:"꼬칩", meaning:"cánh hoa, lá hoa", explain:"꽃 + 잎: 잎 đứng đầu phần sau (âm 이) → chèn ㄴ, ㅊ→ㄷ (7 âm đại diện) rồi Patchim ㄷ đứng trước ㄴ mới → mũi hóa thành ㄴ: [꼰닙]."},
-  {word:"서울역", pron:"서울력", wrong:"서우력", meaning:"ga Seoul", explain:"서울 + 역: 역 đứng đầu phần sau → chèn ㄴ, sau đó Patchim ㄹ đứng trước ㄴ mới → lỏng hóa: ㄴ đổi thành ㄹ → [서울력]."},
+  {word:"솜이불", pron:"솜니불", wrong:"소미불", meaning:"chăn bông", explain:"솜 + 이불: 이 đứng đầu phần sau → thêm ㄴ. Phụ âm cuối ㅁ không đổi gì thêm."},
+  {word:"한여름", pron:"한녀름", wrong:"하녀름", meaning:"giữa mùa hè, cao điểm hè", explain:"한 + 여름: 여 đứng đầu phần sau → thêm ㄴ. Phụ âm cuối ㄴ không đổi gì thêm."},
+  {word:"무슨 요일", pron:"무슨뇨일", wrong:"무스뇨일", meaning:"thứ mấy", explain:"무슨 + 요일: 요 đứng đầu phần sau → thêm ㄴ. Phụ âm cuối ㄴ không đổi gì thêm."},
+  {word:"색연필", pron:"생년필", wrong:"새견필", meaning:"bút chì màu", explain:"색 + 연필: 연 đứng đầu phần sau → thêm ㄴ, sau đó phụ âm cuối ㄱ (do ảnh hưỡng của ㄴ) mũi hóa thành ㅇ: [생년필]."},
+  {word:"꽃잎", pron:"꼰닙", wrong:"꼬칩", meaning:"cánh hoa, lá hoa", explain:"꽃 + 잎: 잎 đứng đầu phần sau (âm 이) → thêm ㄴ, ㅊ → [ㄷ], sau đó phụ âm cuối ㄷ (do ảnh hưởng của ㄴ) mũi hóa thành ㄴ: [꼰닙]."},
+  {word:"서울역", pron:"서울력", wrong:"서우력", meaning:"ga Seoul", explain:"서울 + 역: 역 đứng đầu phần sau → thêm ㄴ, ㄴ chịu ảnh hưởng của phụ âm cuối ㄹ đứng trước, ㄴ lỏng hóa thành ㄹ → [서울력]."},
 ];
 
 /* ---------- audio helper (녹음 파일 재생, base64로 내장되어 별도 파일 필요 없음) ---------- */
@@ -286,7 +286,7 @@ btnReveal.addEventListener('click', ()=>{
   document.getElementById('rvTip').textContent = d.explain;
   revealPanel.classList.add('show');
 
-  quizQ.textContent = `"${d.word}" thật ra được phát âm là gì?`;
+  quizQ.textContent = `"${d.word}" phát âm như thế nào?`;
   quizOpts.innerHTML = '';
   const opts = Math.random() > 0.5 ? [d.pron, d.wrong] : [d.wrong, d.pron];
   opts.forEach(opt=>{
@@ -305,7 +305,7 @@ btnReveal.addEventListener('click', ()=>{
         score++;
         quizFb.textContent = 'Chính xác! ✅';
       } else {
-        quizFb.textContent = `Chưa đúng — cách đọc đúng là [${d.pron}]. Nghe lại và thử lần sau nhé.`;
+        quizFb.textContent = `Chưa chính xác — cách đọc đúng là [${d.pron}]. Hãy nghe và thử lại nhé.`;
       }
       scoreText.textContent = `Điểm: ${score} / ${DATA.length}`;
       renderDots();
