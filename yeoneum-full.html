@@ -197,7 +197,7 @@
       <div class="rule-card g-h">
         <div class="rule-tag">Trường hợp đặt biệt, khi phụ âm cuối là 'ㅎ'</div>
         <div class="rule-formula hangul">좋+아요 → 조아요</div>
-        <div class="rule-note"> ㅎ là ngoại lệ duy nhất — khi phụ âm cuối có chứa ㅎ đứng trước âm tiết bắt đầu bằng nguyên âm, thay vì nối sang, ㅎ <b>bị lượt bỏ</b> (Quy tắc lượt bỏ ㅎ - ㅎ탈락 sẽ được tìm hiểu chi tiết ở Module 5). Còn trong trường hợp phụ âm cuối là các phụ âm cuối kép có chứa ㅎ như: ㄶ, ㅀ, ㅎ bị lượt bỏ và chữ còn lại được nối sang thành phụ âm đầu của âm tiết sau.</div>
+        <div class="rule-note"> ㅎ là ngoại lệ duy nhất — khi phụ âm cuối có chứa ㅎ đứng trước âm tiết bắt đầu bằng nguyên âm, thay vì nối sang, ㅎ <b>bị lược bỏ</b> (Quy tắc lược bỏ ㅎ - ㅎ탈락 sẽ được tìm hiểu chi tiết ở Module 5). Còn trong trường hợp phụ âm cuối là các phụ âm cuối kép có chứa ㅎ như: ㄶ, ㅀ, ㅎ bị lược bỏ và chữ còn lại được nối sang thành phụ âm đầu của âm tiết sau.</div>
         <div class="rule-example">Ví dụ: <b class="hangul">많아요</b>→[마나요] (ㅎ biến mất, ㄴ nối sang âm tiết sau).</div>
       </div>
     </div>
@@ -232,8 +232,8 @@ const DATA = [
   {word:"짧아요", pron:"짤바요", type:"gyeop", meaning:"ngắn", explain:"Phụ âm cuối kép ㄼ: ㄹ ở lại làm phụ âm cuối, ㅂ nối sang làm phụ âm đầu của 아 → 바."},
   {word:"없어요", pron:"업써요", type:"gyeop", meaning:"không có", explain:"Phụ âm cuối kép ㅄ: ㅂ ở lại làm phụ âm cuối, ㅅ nối sang và bị căng hóa thành [ㅆ] → 써."},
   {word:"앉아요", pron:"안자요", type:"gyeop", meaning:"ngồi", explain:"Phụ âm cuối kép ㄵ: ㄴ ở lại làm phụ âm cuối, ㅈ nối sang làm phụ âm đầu của 아 → 자."},
-  {word:"좋아요", pron:"조아요", type:"h", meaning:"thích, tốt", explain:"Phụ âm cuối ㅎ không nối sang mà bị lượt bỏ, không đọc do đứng trước nguyên âm (Quy tắc lượt bỏ ㅎ)."},
-  {word:"많아요", pron:"마나요", type:"h", meaning:"nhiều", explain:"Phụ âm cuối kép ㄶ: ㅎ lượt bỏ, không đọc (Quy tắc lượt bỏ ㅎ), ㄴ nối sang làm phụ âm đầu của 아 → 나."},
+  {word:"좋아요", pron:"조아요", type:"h", meaning:"thích, tốt", explain:"Phụ âm cuối ㅎ không nối sang mà bị lược bỏ, không đọc do đứng trước nguyên âm (Quy tắc lược bỏ ㅎ)."},
+  {word:"많아요", pron:"마나요", type:"h", meaning:"nhiều", explain:"Phụ âm cuối kép ㄶ: ㅎ lược bỏ, không đọc (Quy tắc lược bỏ ㅎ), ㄴ nối sang làm phụ âm đầu của 아 → 나."},
 ];
 const GROUP_CLASS = {"simple":"g-simple","gyeop":"g-gyeop","h":"g-h"};
 
