@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>구개음화 · Luyện tập âm vòm hóa</title>
+<title>구개음화 · Luyện tập quy tắc  hóa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -124,8 +124,8 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">Ngữ âm tiếng Hàn</div>
-    <h1 class="title hangul">Luyện tập âm vòm hóa (구개음화)</h1>
+    <div class="eyebrow">Nguyên tắc phát âm tiếng Hàn</div>
+    <h1 class="title hangul">Luyện tập quy tắc ngạc hóa (구개음화)</h1>
   </div>
 </header>
 
@@ -148,12 +148,12 @@
 
         <div class="reveal-panel" id="revealPanel">
           <div class="reveal-row"><div class="k">Chữ viết</div><div class="v hangul" id="rvWritten"></div></div>
-          <div class="reveal-row"><div class="k">Đọc thật</div><div class="v mono2" id="rvSound" style="color:var(--red)"></div></div>
+          <div class="reveal-row"><div class="k">Phát âm</div><div class="v mono2" id="rvSound" style="color:var(--red)"></div></div>
           <div class="tip" id="rvTip"></div>
         </div>
 
         <div class="quiz-zone" id="quizZone">
-          <div class="quiz-q" id="quizQ">Từ này thật ra được phát âm là gì?</div>
+          <div class="quiz-q" id="quizQ">Từ này phát âm như thế nào?</div>
           <div class="quiz-opts" id="quizOpts"></div>
           <div class="quiz-fb" id="quizFb"></div>
         </div>
@@ -167,8 +167,8 @@
       <div class="final-screen" id="finalScreen">
         <div class="sec-label" style="color:var(--red)">Hoàn thành</div>
         <div class="final-num" id="finalScore">0 / 6</div>
-        <p style="color:#6a6152;max-width:460px;margin:10px auto 22px;">Bạn đã luyện xong 6 từ áp dụng quy tắc âm vòm hóa.</p>
-        <button class="btn btn-primary" id="btnRestart">↺ Luyện lại từ đầu</button>
+        <p style="color:#6a6152;max-width:460px;margin:10px auto 22px;">Bạn đã luyện xong các từ áp dụng quy tắc ngạc hóa.</p>
+        <button class="btn btn-primary" id="btnRestart">↺ Hãy luyện lại từ đầu</button>
       </div>
     </div>
   </div>
@@ -176,12 +176,12 @@
 
 <script>
 const DATA = [
-  {word:"굳이", pron:"구지", wrong:"굳이", meaning:"cố ý, cố chấp làm (dù không cần thiết)", explain:"Nhóm 1: Patchim ㄷ (굳) + 이 → hợp thành ㅈ."},
-  {word:"미닫이", pron:"미다지", wrong:"미닫이", meaning:"cửa trượt (kiểu cửa kéo ngang)", explain:"Nhóm 1: Patchim ㄷ (닫) + 이 → hợp thành ㅈ."},
-  {word:"해돋이", pron:"해도지", wrong:"해돋이", meaning:"cảnh mặt trời mọc, bình minh", explain:"Nhóm 1: Patchim ㄷ (돋) + 이 → hợp thành ㅈ."},
-  {word:"같이", pron:"가치", wrong:"같이", meaning:"cùng nhau, cùng với", explain:"Nhóm 2: Patchim ㅌ (같) + 이 → hợp thành ㅊ."},
-  {word:"끝이", pron:"끄치", wrong:"끝이", meaning:"phần cuối, sự kết thúc (+ trợ từ 이)", explain:"Nhóm 2: Patchim ㅌ (끝) + 이 → hợp thành ㅊ."},
-  {word:"붙이다", pron:"부치다", wrong:"붙이다", meaning:"dán, gắn, đính vào", explain:"Nhóm 2: Patchim ㅌ (붙) + 이 → hợp thành ㅊ."},
+  {word:"굳이", pron:"구지", wrong:"굳이", meaning:"cố ý, cố chấp làm", explain:"Phụ âm cuối ㄷ (굳) + 이 → biến đổi thành ㅈ."},
+  {word:"미닫이", pron:"미다지", wrong:"미닫이", meaning:"cửa trượt", explain:"Phụ âm cuối ㄷ (닫) + 이 → biến đổi thành ㅈ."},
+  {word:"해돋이", pron:"해도지", wrong:"해돋이", meaning:"cảnh mặt trời mọc, bình minh", explain:"Phụ âm cuối ㄷ (돋) + 이 → biến đổi thành ㅈ."},
+  {word:"같이", pron:"가치", wrong:"같이", meaning:"cùng nhau, cùng với", explain:"Phụ âm cuối ㅌ (같) + 이 → biến đổi thành ㅊ."},
+  {word:"끝이", pron:"끄치", wrong:"끝이", meaning:"phần cuối, sự kết thúc", explain:"Phụ âm cuối ㅌ (끝) + 이 → biến đổi thành ㅊ."},
+  {word:"붙이다", pron:"부치다", wrong:"붙이다", meaning:"dán, gắn, đính vào", explain:"Phụ âm cuối ㅌ (붙) + 이 → biến đổi thành ㅊ."},
 ];
 
 /* ---------- audio helper (녹음 파일 재생, base64로 내장되어 별도 파일 필요 없음) ---------- */
@@ -281,7 +281,7 @@ btnReveal.addEventListener('click', ()=>{
   document.getElementById('rvTip').textContent = d.explain;
   revealPanel.classList.add('show');
 
-  quizQ.textContent = `"${d.word}" thật ra được phát âm là gì?`;
+  quizQ.textContent = `"${d.word}" Từ này phát âm như thế nào?`;
   quizOpts.innerHTML = '';
   const opts = Math.random() > 0.5 ? [d.pron, d.wrong] : [d.wrong, d.pron];
   opts.forEach(opt=>{
@@ -300,7 +300,7 @@ btnReveal.addEventListener('click', ()=>{
         score++;
         quizFb.textContent = 'Chính xác! ✅';
       } else {
-        quizFb.textContent = `Chưa đúng — cách đọc đúng là [${d.pron}]. Nghe lại và thử lần sau nhé.`;
+        quizFb.textContent = `Chưa chính xác — cách đọc đúng là [${d.pron}]. Hãy nghe và thử lại nhé.`;
       }
       scoreText.textContent = `Điểm: ${score} / ${DATA.length}`;
       renderDots();
