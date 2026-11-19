@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trò Chơi Phát Âm Tiếng Hàn</title>
+<title>Game</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -211,18 +211,18 @@
 </head>
 <body>
 <div class="stage">
-  <div class="eyebrow">H Ọ C &nbsp;P H Á T &nbsp;Â M &nbsp;N G Ẫ U &nbsp;N H I Ê N</div>
-  <h1>Trò Chơi Phát Âm</h1>
-  <div class="subtitle">Đọc to chữ cái xuất hiện trên màn hình theo đúng nhịp</div>
+  <div class="eyebrow">H Ọ C &nbsp;P H Á T &nbsp;Â M &nbsp;T I Ế N G &nbsp;H À N</div>
+  <h1>Game</h1>
+  <div class="subtitle">Hãy đọc to chữ cái xuất hiện trên màn hình theo đúng nhịp điệu</div>
 
   <div class="panel">
 
     <div id="idle-screen">
       <div class="meta-row">
-        <span>Bộ: <b>Âm tiết ghép (12 âm/lượt)</b></span>
+        <span>Bộ: <b>Âm tiết (12 âm/lượt)</b></span>
         <span>Nhịp bắt đầu: <b>65</b></span>
       </div>
-      <div class="word-display"><div class="idle">가 · 거 · 고 · 구 · 그 · 배 · 쇠 · 위 ...<br><br>Phụ âm + nguyên âm ghép thành 1 âm tiết thật<br>Nhấn nút để đếm ngược 3·2·1<br>rồi các âm tiết sẽ xuất hiện ngẫu nhiên theo nhịp</div></div>
+      <div class="word-display"><div class="idle">가 · 거 · 고 · 구 · 그 · 배 · 쇠 · 위 ...<br><br>Phụ âm kết hợp nguyên âm tạo thành âm tiết<br>Hãy nhấn nút đếm ngược,<br> các âm tiết sẽ xuất hiện ngẫu nhiên theo nhịp điệu</div></div>
       <div class="controls">
         <button class="btn-main" id="start-btn">▶ Bắt đầu</button>
       </div>
@@ -244,16 +244,16 @@
     <div id="result-screen" style="display:none;">
       <div class="result">
         <div class="headline" id="result-headline">Hoàn thành cấp độ! 🔥</div>
-        <p id="result-msg">Cấp độ tiếp theo sẽ nhanh hơn</p>
+        <p id="result-msg">Cấp độ tiếp theo tốc độ sẽ nhanh hơn</p>
         <div class="controls">
           <button class="btn-secondary" id="retry-btn">Thử lại</button>
-          <button class="btn-main" id="next-btn">Cấp độ tiếp →</button>
+          <button class="btn-main" id="next-btn">Cấp độ tiếp theo →</button>
         </div>
       </div>
     </div>
 
   </div>
-  <div class="footer-note">Đây là trò chơi luyện phát âm nên không chấm điểm đúng/sai — hãy tự kiểm tra xem mình có theo kịp nhịp không nhé!</div>
+  <div class="footer-note">Đây là trò chơi luyện phát âm, không chấm điểm đúng/sai. Hãy tập trung đọc chính xác và tự kiểm tra xem bạn có theo kịp nhịp điệu không nhé!</div>
 </div>
 
 <script>
@@ -446,7 +446,7 @@ function finishLevel(){
     nextBtn.textContent = 'Chơi lại từ đầu →';
     nextBtn.onclick = () => startLevel(0);
   } else {
-    nextBtn.textContent = 'Cấp độ tiếp →';
+    nextBtn.textContent = 'Cấp độ tiếp theo →';
     nextBtn.onclick = () => startLevel(currentLevel + 1);
   }
 }
