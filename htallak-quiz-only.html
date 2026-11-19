@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ㅎ탈락 · Luyện tập giản lược ㅎ</title>
+<title>ㅎ탈락 · Luyện tập quy tắc lược bỏ ㅎ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -124,8 +124,8 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">Ngữ âm tiếng Hàn</div>
-    <h1 class="title hangul">Luyện tập giản lược ㅎ (ㅎ탈락)</h1>
+    <div class="eyebrow">Nguyên tắc phát âm tiếng Hàn</div>
+    <h1 class="title hangul">Luyện tập quy tắc lược bỏ ㅎ (ㅎ탈락)</h1>
   </div>
 </header>
 
@@ -136,7 +136,7 @@
 
       <div id="playScreen">
         <div class="p-word hangul" id="pWord">쌓아요</div>
-        <div class="p-mean" id="pMean">chồng chất, tích lũy (kinh nghiệm, tiền...)</div>
+        <div class="p-mean" id="pMean">chồng chất, tích lũy</div>
 
         <div class="countdown-zone" id="countdownZone"></div>
 
@@ -148,12 +148,12 @@
 
         <div class="reveal-panel" id="revealPanel">
           <div class="reveal-row"><div class="k">Chữ viết</div><div class="v hangul" id="rvWritten"></div></div>
-          <div class="reveal-row"><div class="k">Đọc thật</div><div class="v mono2" id="rvSound" style="color:var(--red)"></div></div>
+          <div class="reveal-row"><div class="k">Cách phát âm</div><div class="v mono2" id="rvSound" style="color:var(--red)"></div></div>
           <div class="tip" id="rvTip"></div>
         </div>
 
         <div class="quiz-zone" id="quizZone">
-          <div class="quiz-q" id="quizQ">Từ này thật ra được phát âm là gì?</div>
+          <div class="quiz-q" id="quizQ">Từ này phát âm như thế nào?</div>
           <div class="quiz-opts" id="quizOpts"></div>
           <div class="quiz-fb" id="quizFb"></div>
         </div>
@@ -167,7 +167,7 @@
       <div class="final-screen" id="finalScreen">
         <div class="sec-label" style="color:var(--red)">Hoàn thành</div>
         <div class="final-num" id="finalScore">0 / 6</div>
-        <p style="color:#6a6152;max-width:460px;margin:10px auto 22px;">Bạn đã luyện xong 6 từ áp dụng nguyên tắc giản lược ㅎ.</p>
+        <p style="color:#6a6152;max-width:460px;margin:10px auto 22px;">Bạn đã hoàn thành luyện tập áp dụng quy tắc lược bỏ ㅎ.</p>
         <button class="btn btn-primary" id="btnRestart">↺ Luyện lại từ đầu</button>
       </div>
     </div>
@@ -176,12 +176,12 @@
 
 <script>
 const DATA = [
-  {word:"쌓아요", pron:"싸아요", wrong:"싸하요", meaning:"chồng chất, tích lũy (kinh nghiệm, tiền...)", explain:"Nhóm 1: 쌓다 + 아요, Patchim ㅎ đứng trước nguyên âm 아 → ㅎ rụng hoàn toàn."},
-  {word:"닿아요", pron:"다아요", wrong:"다하요", meaning:"chạm tới, đạt đến, liên lạc được", explain:"Nhóm 1: 닿다 + 아요, Patchim ㅎ đứng trước nguyên âm 아 → ㅎ rụng hoàn toàn."},
-  {word:"괜찮아요", pron:"괜차나요", wrong:"괜찬하요", meaning:"ổn, không sao", explain:"Nhóm 2: 괜찮다 + 아요, Patchim ㄶ đứng trước nguyên âm 아 → ㅎ rụng, ㄴ trượt sang: [괜차나요]."},
-  {word:"귀찮아요", pron:"귀차나요", wrong:"귀찬하요", meaning:"phiền phức, chán, lười (làm gì đó)", explain:"Nhóm 2: 귀찮다 + 아요, Patchim ㄶ đứng trước nguyên âm 아 → ㅎ rụng, ㄴ trượt sang: [귀차나요]."},
-  {word:"잃어요", pron:"이러요", wrong:"일허요", meaning:"mất, đánh mất", explain:"Nhóm 3: 잃다 + 어요, Patchim ㅀ đứng trước nguyên âm 어 → ㅎ rụng, ㄹ trượt sang: [이러요]."},
-  {word:"뚫어요", pron:"뚜러요", wrong:"뚤허요", meaning:"khoan, đục lỗ, xuyên qua", explain:"Nhóm 3: 뚫다 + 어요, Patchim ㅀ đứng trước nguyên âm 어 → ㅎ rụng, ㄹ trượt sang: [뚜러요]."},
+  {word:"쌓아요", pron:"싸아요", wrong:"싸하요", meaning:"chồng chất, tích lũy", explain:"쌓다 + 아요, Phụ âm cuối ㅎ đứng trước nguyên âm 아 → ㅎ bị lược bỏ."},
+  {word:"닿아요", pron:"다아요", wrong:"다하요", meaning:"chạm tới, đạt đến, liên lạc được", explain:"닿다 + 아요, Phụ âm cuối ㅎ đứng trước nguyên âm 아 → ㅎ bị lược bỏ."},
+  {word:"괜찮아요", pron:"괜차나요", wrong:"괜찬하요", meaning:"ổn, không sao", explain:"괜찮다 + 아요, Phụ âm cuối ㄶ đứng trước nguyên âm 아 → ㅎ bị lược bỏ, ㄴ nối sang: [괜차나요]."},
+  {word:"귀찮아요", pron:"귀차나요", wrong:"귀찬하요", meaning:"phiền phức, chán, lười", explain:"귀찮다 + 아요, Phụ âm cuối ㄶ đứng trước nguyên âm 아 → ㅎ bị lược bỏ, ㄴ nối sang: [귀차나요]."},
+  {word:"잃어요", pron:"이러요", wrong:"일허요", meaning:"mất, đánh mất", explain:"잃다 + 어요, Phụ âm cuối ㅀ đứng trước nguyên âm 어 → ㅎ bị lược bỏ, ㄹ nối sang: [이러요]."},
+  {word:"뚫어요", pron:"뚜러요", wrong:"뚤허요", meaning:"khoan, đục lỗ, xuyên qua", explain:"뚫다 + 어요, Phụ âm cuối ㅀ đứng trước nguyên âm 어 → ㅎ bị lược bỏ, ㄹ nối sang: [뚜러요]."},
 ];
 
 /* ---------- audio helper (녹음 파일 재생, base64로 내장되어 별도 파일 필요 없음) ---------- */
@@ -289,7 +289,7 @@ btnReveal.addEventListener('click', ()=>{
   document.getElementById('rvTip').textContent = d.explain;
   revealPanel.classList.add('show');
 
-  quizQ.textContent = `"${d.word}" thật ra được phát âm là gì?`;
+  quizQ.textContent = `"${d.word}" phát âm như thế nào?`;
   quizOpts.innerHTML = '';
   const opts = Math.random() > 0.5 ? [d.pron, d.wrong] : [d.wrong, d.pron];
   opts.forEach(opt=>{
@@ -308,7 +308,7 @@ btnReveal.addEventListener('click', ()=>{
         score++;
         quizFb.textContent = 'Chính xác! ✅';
       } else {
-        quizFb.textContent = `Chưa đúng — cách đọc đúng là [${d.pron}]. Nghe lại và thử lần sau nhé.`;
+        quizFb.textContent = `Chưa chính xác — cách đọc đúng là [${d.pron}]. Hãy nghe thử lại.`;
       }
       scoreText.textContent = `Điểm: ${score} / ${DATA.length}`;
       renderDots();
